@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoangAnh</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #ch2 {
+            color: blue;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <a id="ch2">Đệ của Hoàng Tử Hoàng Anh saying: <br><br>Ồ!, vậy đúng là cô rồi. Mà này, cô biết gì không?, Hoàng Tử Hoàng Anh đã nói với tôi là có điều bất ngờ dành cho cô đó.</a>
+    <div class="button-container">
+        <button id="surpriseButton" onclick="location.href='phu3.html'">Vậy đó là gì?</button>
+    </div>
+    <script>
+        var a = document.getElementById('ch2'); 
+        a.style.color = 'Black'; 
+        a.style.position = 'relative';
+        a.style.top = '-16px';
+        a.style.padding = '10px';
+    </script>
+</body>
+</html>

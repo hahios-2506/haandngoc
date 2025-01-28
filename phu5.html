@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoangAnh - Phu 5</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+            position: relative;
+        }
+        #ch5 {
+            color: black;
+            font-size: 20px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Để không ảnh hưởng đến các nút */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="ch5">Cảm ơn em đã hứa ạ! <br><br> Anh Yêu Em!</div>
+    </div>
+    <canvas id="fireworksCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function createFirework(x, y) {
+            const particles = [];
+            const numParticles = 100;
+
+            for (let i = 0; i < numParticles; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    radius: Math.random() * 3 + 1,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    speed: Math.random() * 3 + 1,
+                    angle: Math.random() * 2 * Math.PI,
+                    life: 0,
+                    maxLife: Math.random() * 30 + 30
+                });
+            }
+
+            return particles;
+        }
+
+        function updateParticles(particles) {
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += Math.cos(p.angle) * p.speed;
+                p.y += Math.sin(p.angle) * p.speed;
+                p.life++;
+
+                if (p.life >= p.maxLife) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        function drawParticles(particles) {
+            for (const p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+            }
+        }
+
+        let fireworks = [];
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < fireworks.length; i++) {
+                const particles = fireworks[i];
+                updateParticles(particles);
+                drawParticles(particles);
+
+                if (particles.length === 0) {
+                    fireworks.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Tạo pháo hoa liên tục
+        function launchFireworks() {
+            setInterval(() => {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                fireworks.push(createFirework(x, y));
+            }, 400); // Tạo một pháo hoa mỗi nửa giây
+        }
+
+        // Khởi động animation
+        animate();
+        launchFireworks(); // Gọi hàm để tạo pháo hoa liên tục
+    </script>
+</body>
+</html>

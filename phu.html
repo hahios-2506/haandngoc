@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoangAnh</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Chiều cao toàn bộ viewport */
+            margin: 0;
+        }
+        #ch1 {
+            color: blue;
+            text-align: center;
+            margin-bottom: 20px; /* Khoảng cách giữa câu hỏi và nút */
+            font-size: 20px; /* Kích thước chữ cho câu hỏi */
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 300px; /* Chiều rộng của container chứa nút */
+        }
+        button {
+            padding: 10px 20px; /* Khoảng cách bên trong nút */
+            font-size: 17px; /* Kích thước chữ cho nút */
+        }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" loop muted>
+        <source src="audio/rv.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <a id="ch1">Đệ của Hoàng Anh saying: <br> <br> Wuây Wuây, dừng lại đã, cho tôi hỏi cô là có phải là người sắp trở thành người yêu của Hoàng Tử Hoàng Anh không?</a>
+    <div class="button-container">
+        <button id="noButton">Không</button>
+        <button id="yesButton">Đúng rồi sao vậy?</button>
+    </div>
+    
+    <script>
+        // Thêm sự kiện click toàn cục để mở âm thanh
+        document.addEventListener('click', function() {
+            var music = document.getElementById('backgroundMusic');
+            music.muted = false; // Bỏ muted khi người dùng nhấp
+            music.play().catch(function(error) {
+                console.log("Error playing music: ", error);
+            });
+        });
+
+        // Lắng nghe sự kiện người dùng nhấp vào nút
+        document.getElementById('yesButton').addEventListener('click', function() {
+            setTimeout(function() {
+                location.href = 'phu2.html'; // Điều hướng đến trang phu2.html sau 1 giây
+            }, 1000); // Thời gian chờ 1 giây để nhạc bắt đầu phát
+        });
+
+        var a = document.getElementById('ch1'); 
+        a.style.color = 'Black'; 
+        a.style.position = 'relative';
+        a.style.top = '-16px';
+        a.style.padding = '10px';
+    </script>
+</body>
+</html>
